@@ -1,6 +1,6 @@
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 
-import items from "../Books/fantasy.json";
+import items from "../data/fantasy.json";
 
 const AllTheBooks = function () {
   return (
@@ -9,14 +9,14 @@ const AllTheBooks = function () {
         {items.map((libro) => {
           return (
             <Col xs={12} md={4} lg={3} key={libro.asin}>
-              <Card style={{ height: "40rem" }}>
+              <Card className="h-100">
                 <Card.Img variant="top" src={libro.img} alt={libro.title} />
-                <Card.Body>
+                <Card.Body className="d-flex flex-column justify-content-between">
                   <Card.Title>{libro.title}</Card.Title>
                   <Card.Text>
                     {libro.asin} | {libro.category} {libro.price} £
                   </Card.Text>
-                  <Button variant="primary">Aggiungi al Carello</Button>
+                  <Button variant="primary">Aggiungi al Carrello</Button>
                 </Card.Body>
               </Card>
             </Col>

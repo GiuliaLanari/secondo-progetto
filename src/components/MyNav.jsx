@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 
 const MyNav = function () {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" bg="dark" data-bs-theme="dark">
       <Container fluid>
         <Navbar.Brand href="#home"> EpiBooks</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
