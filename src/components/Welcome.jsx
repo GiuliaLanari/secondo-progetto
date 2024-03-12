@@ -5,7 +5,7 @@ const Welcome = function () {
     <>
       {["info"].map((variant) => (
         <Alert key={variant} variant={variant} className="m-3">
-          Sconti super convenienti fino al primo Giugno 2024!
+          Sconto super conveniente fino al primo Giugno 2024!
         </Alert>
       ))}
       <h2 className="text-center my-4">Shop Online</h2>

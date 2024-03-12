@@ -16,7 +16,7 @@ const AllTheBooks = function () {
                   <Card.Text>
                     {libro.asin} | {libro.category} {libro.price} £
                   </Card.Text>
-                  <Button variant="primary">Aggiungi al Carrello</Button>
+                  <Button variant="info fw-bolder">Aggiungi al Carrello</Button>
                 </Card.Body>
               </Card>
             </Col>
