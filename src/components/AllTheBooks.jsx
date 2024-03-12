@@ -10,7 +10,7 @@ const AllTheBooks = function () {
           return (
             <Col xs={12} md={4} lg={3} key={libro.asin}>
               <Card className="h-100">
-                <Card.Img variant="top" src={libro.img} alt={libro.title} />
+                <Card.Img variant="top" src={libro.img} alt={libro.title} className="h-50 object-fit-cover" />
                 <Card.Body className="d-flex flex-column justify-content-between">
                   <Card.Title>{libro.title}</Card.Title>
                   <Card.Text>
