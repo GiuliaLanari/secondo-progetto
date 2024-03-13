@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import Alert from "react-bootstrap/Alert";
 
 class SingleBook extends Component {
   state = {
@@ -8,7 +9,7 @@ class SingleBook extends Component {
   };
   render() {
     return (
-      <Col xs={12} md={4} lg={3} onClick={() => this.setState({ selected: true })}>
+      <Col xs={12} md={4} lg={3} onClick={(e) => this.setState({ selected: true })}>
         <Card className="h-100">
           <Card.Img
             variant="top"
@@ -20,6 +21,7 @@ class SingleBook extends Component {
             <Card.Title>{this.props.libro.title}</Card.Title>
           </Card.Body>
         </Card>
+        {this.state.selected === true && <Card className="border border-danger-subtle"></Card>}
       </Col>
     );
   }
