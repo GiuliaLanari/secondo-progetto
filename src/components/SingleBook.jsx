@@ -8,12 +8,8 @@ class SingleBook extends Component {
   };
   render() {
     return (
-      <Col xs={12} md={4} lg={3} onClick={(e) => this.setState({ selected: true })}>
-        <Card
-          className={
-            this.state.selected ? "border border-danger-subtle h-100 border-3" : "h-100 border border-light-subtle"
-          }
-        >
+      <Col xs={12} md={4} lg={3} onClick={(e) => this.setState({ selected: !this.state.selected })}>
+        <Card className={this.state.selected ? "bg-danger h-100 border-3" : "h-100 border border-light-subtle"}>
           <Card.Img
             variant="top"
             src={this.props.libro.img}
