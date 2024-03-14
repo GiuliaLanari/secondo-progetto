@@ -28,7 +28,7 @@ class BookList extends Component {
           {this.props.arreyLibri
             .filter((element) => element.title.toLowerCase().includes(this.state.searchQuery))
             .map((element) => (
-              <Col xs={12} md={3} key={element.asin}>
+              <Col xs={12} md={4} lg={3} key={element.asin}>
                 <SingleBook libro={element} />
               </Col>
             ))}

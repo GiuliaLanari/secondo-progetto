@@ -5,21 +5,18 @@ import Button from "react-bootstrap/Button";
 const AuthenticationKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxOTc2MTRjNTllYzAwMTk5MGQ2ZTYiLCJpYXQiOjE3MDkyODMxNjksImV4cCI6MTcxMDQ5Mjc2OX0.KZCHGXqImKcqGr7zGKXszDY9su3m0Y3NGYP9AEzZhdU";
 
-const commento = {
-  testo: "",
-  voto: 1,
-};
-
 class AddComment extends Component {
   state = {
-    commentoAggiunto: commento,
+    comment: "",
+    rate: 1,
+    elementId: this.props.asin,
   };
 
   addCommento = (e) => {
     e.preventDefault();
-    fetch("https://striveschool-api.herokuapp.com/api/comments/" + this.props.asin, {
+    fetch("https://striveschool-api.herokuapp.com/api/comments/", {
       method: "POST",
-      body: JSON.stringify(this.state.commentoAggiunto),
+      body: JSON.stringify(this.state),
       headers: {
         Authorization: "Bearer " + AuthenticationKey,
         "Content-Type": "application/json",
@@ -29,7 +26,9 @@ class AddComment extends Component {
         if (response.ok) {
           window.alert("Commento pubblicato!");
           this.setState({
-            commentoAggiunto: commento,
+            comment: "",
+            rate: 1,
+            elementId: this.props.asin,
           });
         } else {
           window.alert("Riprova più tardi!");
@@ -44,15 +43,34 @@ class AddComment extends Component {
   render() {
     return (
       <>
-        <Form>
+        <Form onSubmit={this.addCommento}>
           <Form.Group className="mb-3">
             <Form.Label>Aggiungi il tuo commento:</Form.Label>
-            <Form.Control as="textarea" rows={2} value={this.state.comment} />
+            <Form.Control
+              as="textarea"
+              rows={2}
+              onChange={(e) => {
+                this.setState({
+                  comment: e.target.value,
+                });
+              }}
+              value={this.state.comment}
+              required
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Voto?</Form.Label>
-            <Form.Select aria-label="Default select example" value={this.state.vote}>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => {
+                this.setState({
+                  rate: e.target.value,
+                });
+              }}
+              value={this.state.rate}
+              required
+            >
               <option>1</option>
               <option>2</option>
               <option>3</option>
