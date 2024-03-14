@@ -8,7 +8,6 @@ import LibriHistory from "../src/data/history.json";
 // import SingleBook from "./components/SingleBook";
 import BookList from "./components/BookList";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 
 function App() {
   return (
@@ -18,9 +17,7 @@ function App() {
       {/* <SingleBook libro={LibriHistory[0]} /> */}
       {/* <AllTheBooks /> */}
       <Container>
-        <Row className="row-gap-4">
-          <BookList arreyLibri={LibriHistory} />
-        </Row>
+        <BookList arreyLibri={LibriHistory} />
       </Container>
       <MyFooter />
     </div>
