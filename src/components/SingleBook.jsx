@@ -10,7 +10,11 @@ class SingleBook extends Component {
   render() {
     return (
       <Col className="h-100 mt-4">
-        <Card>
+        <Card
+          className={
+            this.props.asin === this.props.libro.asin ? "h-100 bg-danger  border-3" : "h-100 border border-light-subtle"
+          }
+        >
           <Card.Img
             variant="top"
             src={this.props.libro.img}

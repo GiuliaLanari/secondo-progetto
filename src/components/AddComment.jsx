@@ -3,20 +3,33 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 const AuthenticationKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxOTc2MTRjNTllYzAwMTk5MGQ2ZTYiLCJpYXQiOjE3MDkyODMxNjksImV4cCI6MTcxMDQ5Mjc2OX0.KZCHGXqImKcqGr7zGKXszDY9su3m0Y3NGYP9AEzZhdU";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NWU0ZWFiYWQyODAwMTliZDUyZTgiLCJpYXQiOjE3MTA3NzU4ODYsImV4cCI6MTcxMTk4NTQ4Nn0.QQO5inbMAY6-SH78hrhW8FwlTFKyBlyMq8PA3h0jEFc";
 
 class AddComment extends Component {
   state = {
-    comment: "",
-    rate: 1,
-    elementId: this.props.asin,
+    comment: {
+      comment: "",
+      rate: 1,
+      elementId: this.props.asin,
+    },
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.asin !== this.props.asin) {
+      this.setState({
+        comment: {
+          ...this.state.comment,
+          elementId: this.props.asin,
+        },
+      });
+    }
+  }
 
   addCommento = (e) => {
     e.preventDefault();
     fetch("https://striveschool-api.herokuapp.com/api/comments/", {
       method: "POST",
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(this.state.comment),
       headers: {
         Authorization: "Bearer " + AuthenticationKey,
         "Content-Type": "application/json",
@@ -26,9 +39,11 @@ class AddComment extends Component {
         if (response.ok) {
           window.alert("Commento pubblicato!");
           this.setState({
-            comment: "",
-            rate: 1,
-            elementId: this.props.asin,
+            comment: {
+              comment: "",
+              rate: 1,
+              elementId: this.props.asin,
+            },
           });
         } else {
           window.alert("Riprova più tardi!");
@@ -51,10 +66,13 @@ class AddComment extends Component {
               rows={2}
               onChange={(e) => {
                 this.setState({
-                  comment: e.target.value,
+                  comment: {
+                    ...this.state.comment,
+                    comment: e.target.value,
+                  },
                 });
               }}
-              value={this.state.comment}
+              value={this.state.comment.comment}
               required
             />
           </Form.Group>
@@ -65,10 +83,13 @@ class AddComment extends Component {
               aria-label="Default select example"
               onChange={(e) => {
                 this.setState({
-                  rate: e.target.value,
+                  comment: {
+                    ...this.state.comment,
+                    rate: e.target.value,
+                  },
                 });
               }}
-              value={this.state.rate}
+              value={this.state.comment.rate}
               required
             >
               <option>1</option>

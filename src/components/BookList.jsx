@@ -21,7 +21,7 @@ class BookList extends Component {
     return (
       <>
         <Row className="justify-content-center row-gap-2 mt-3">
-          <Col xs={6} md={5} className="text-center">
+          <Col xs={6} className="text-center">
             <Form.Group>
               <Form.Control
                 type="search"
@@ -30,16 +30,21 @@ class BookList extends Component {
                 onChange={(e) => this.setState({ searchQuery: e.target.value })}
               />
             </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="justify-content-center row-gap-2 mt-3">
+          <Col xs={6} md={5} className="text-center">
             {this.props.arreyLibri
               .filter((element) => element.title.toLowerCase().includes(this.state.searchQuery))
               .map((element) => (
-                <Col xs={6} md={12} key={element.asin}>
+                <Col xs={6} md={12} lg={8} key={element.asin}>
                   <SingleBook libro={element} asin={this.state.asin} changeCardSelected={this.changeCardSelected} />
                 </Col>
               ))}
           </Col>
-          <Col xs={6} md={5} className="text-center">
-            <CommentArea asin={this.state.asin} />
+          <Col xs={6} md={6} className="text-center">
+            {this.state.asin !== "" && <CommentArea asin={this.state.asin} />}
           </Col>
         </Row>
       </>
