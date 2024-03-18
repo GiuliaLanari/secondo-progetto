@@ -16,7 +16,7 @@ class SingleBook extends Component {
           className={
             this.props.asin === this.props.libro.asin ? " bg-warning  border-3" : " border border-light-subtle"
           }
-          style={{ height: "15rem" }}
+          style={{ height: "100%" }}
         >
           <Card.Img
             variant="top"
