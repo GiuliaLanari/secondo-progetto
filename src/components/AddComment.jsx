@@ -38,6 +38,7 @@ class AddComment extends Component {
       .then((response) => {
         if (response.ok) {
           window.alert("Commento pubblicato!");
+          this.props.fetch();
           this.setState({
             comment: {
               comment: "",

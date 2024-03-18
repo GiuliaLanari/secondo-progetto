@@ -47,7 +47,7 @@ class ComponentArea extends Component {
     return (
       <>
         <CommentsList commenti={this.state.commenti} />
-        <AddComment asin={this.props.asin} />
+        <AddComment asin={this.props.asin} fetch={this.fetchCommenti} />
       </>
     );
   }

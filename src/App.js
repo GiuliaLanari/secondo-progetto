@@ -16,7 +16,7 @@ function App() {
       <Welcome />
       {/* <SingleBook libro={LibriHistory[0]} /> */}
       {/* <AllTheBooks /> */}
-      <Container>
+      <Container fluid>
         <BookList arreyLibri={LibriHistory} />
       </Container>
       <MyFooter />

@@ -34,17 +34,26 @@ class BookList extends Component {
         </Row>
 
         <Row className="justify-content-center row-gap-2 mt-3">
-          <Col xs={6} md={5} className="text-center">
-            {this.props.arreyLibri
-              .filter((element) => element.title.toLowerCase().includes(this.state.searchQuery))
-              .map((element) => (
-                <Col xs={6} md={12} lg={8} key={element.asin}>
-                  <SingleBook libro={element} asin={this.state.asin} changeCardSelected={this.changeCardSelected} />
-                </Col>
-              ))}
+          <Col xs={12} md={9} className="text-center">
+            <Row>
+              {this.props.arreyLibri
+                .filter((element) => element.title.toLowerCase().includes(this.state.searchQuery))
+                .map((element) => (
+                  // <Col xs={6} md={12} lg={8} key={element.asin}>
+                  <SingleBook
+                    libro={element}
+                    asin={this.state.asin}
+                    changeCardSelected={this.changeCardSelected}
+                    key={element.asin}
+                  />
+                  // {/* </Col> */}
+                ))}
+            </Row>
           </Col>
-          <Col xs={6} md={6} className="text-center">
-            {this.state.asin !== "" && <CommentArea asin={this.state.asin} />}
+          <Col xs={12} md={3} className="text-center">
+            <div className="sticky-sm-top border">
+              {this.state.asin !== "" && <CommentArea asin={this.state.asin} />}
+            </div>
           </Col>
         </Row>
       </>
