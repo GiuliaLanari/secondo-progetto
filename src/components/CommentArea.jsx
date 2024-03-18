@@ -37,6 +37,11 @@ class ComponentArea extends Component {
   componentDidMount() {
     this.fetchCommenti();
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.asin !== this.props.asin) {
+      this.fetchCommenti();
+    }
+  }
 
   render() {
     return (

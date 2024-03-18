@@ -9,12 +9,11 @@ class BookList extends Component {
   state = {
     searchQuery: "",
     asin: "",
-    selected: undefined,
   };
 
   changeCardSelected = (newSelectedValue) => {
     this.setState({
-      selected: newSelectedValue,
+      asin: newSelectedValue,
     });
   };
 
@@ -35,17 +34,12 @@ class BookList extends Component {
               .filter((element) => element.title.toLowerCase().includes(this.state.searchQuery))
               .map((element) => (
                 <Col xs={6} md={12} key={element.asin}>
-                  <SingleBook
-                    libro={element}
-                    asin={this.state.asin}
-                    selected={this.state.selected}
-                    changeCardSelected={this.changeCardSelected}
-                  />
+                  <SingleBook libro={element} asin={this.state.asin} changeCardSelected={this.changeCardSelected} />
                 </Col>
               ))}
           </Col>
           <Col xs={6} md={5} className="text-center">
-            <CommentArea asin={this.state.asin} selected={this.state.selected} />
+            <CommentArea asin={this.state.asin} />
           </Col>
         </Row>
       </>
