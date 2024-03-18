@@ -1,5 +1,6 @@
 import { Component } from "react";
 import SingleBook from "./SingleBook";
+import CommentArea from "./CommentArea";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
@@ -7,13 +8,21 @@ import Form from "react-bootstrap/Form";
 class BookList extends Component {
   state = {
     searchQuery: "",
+    asin: "",
+    selected: undefined,
+  };
+
+  changeCardSelected = (newSelectedValue) => {
+    this.setState({
+      selected: newSelectedValue,
+    });
   };
 
   render() {
     return (
       <>
-        <Row className="justify-content-center mt-5">
-          <Col xs={12} md={4} className="text-center">
+        <Row className="justify-content-center row-gap-2 mt-3">
+          <Col xs={6} md={5} className="text-center">
             <Form.Group>
               <Form.Control
                 type="search"
@@ -22,16 +31,22 @@ class BookList extends Component {
                 onChange={(e) => this.setState({ searchQuery: e.target.value })}
               />
             </Form.Group>
+            {this.props.arreyLibri
+              .filter((element) => element.title.toLowerCase().includes(this.state.searchQuery))
+              .map((element) => (
+                <Col xs={6} md={12} key={element.asin}>
+                  <SingleBook
+                    libro={element}
+                    asin={this.state.asin}
+                    selected={this.state.selected}
+                    changeCardSelected={this.changeCardSelected}
+                  />
+                </Col>
+              ))}
           </Col>
-        </Row>
-        <Row className="row-gap-2 mt-3">
-          {this.props.arreyLibri
-            .filter((element) => element.title.toLowerCase().includes(this.state.searchQuery))
-            .map((element) => (
-              <Col xs={12} md={4} lg={3} key={element.asin}>
-                <SingleBook libro={element} />
-              </Col>
-            ))}
+          <Col xs={6} md={5} className="text-center">
+            <CommentArea asin={this.state.asin} selected={this.state.selected} />
+          </Col>
         </Row>
       </>
     );
